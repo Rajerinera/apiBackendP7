@@ -1,18 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const rateLimit = require('express-rate-limit');
 
 //const userCtrl = require('../controllers/users');
-const verifyPassword = require('../middleware/pass');
-const verifyEmail = require('../middleware/email');
+const auth = require('../middleware/auth');
+const users = require('../controllers/user');
 
-const limit = rateLimit({
-    windowMs: 3 * 60 * 1000, // 3 min
-    max: 7, // limit de chaque IP à 7 requêtes 
-    message: 'Trop requête patienter 3 min'
-})
 
-router.post('/signup', verifyEmail, verifyPassword, userCtrl.signup);
-router.post('/login',limit, userCtrl.login);
+router.get('/user/:iduser', auth, users.findUser);
+router.get('/users', auth, users.findAllusers);
+router.get('/user/:iduser', auth, users.updateUser);
+router.delete('/user/:userId', auth, users.deleteUser);
+router.delete('/users', auth, users.deleteAllUsers);
 
 module.exports = router;
