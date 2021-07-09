@@ -10,9 +10,11 @@ console.log('connecté sql' + pool);
 
 let sql = 'SELECT * FROM user';
 
-pool.execute(sql, function (err, result) {
-  if (err) throw err;
-  console.log(result);
-})
+pool.query(sql, (err, result, field) =>{
+  if (err){
+    return console.log(err);
+  } 
+  return console.log(result);
+}) 
 module.exports = pool.promise();
  

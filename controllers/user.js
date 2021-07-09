@@ -8,7 +8,7 @@ exports.findUser = (req, res) => {
             if(err.kind === 'no found'){
                 res.status(404).send({
                     message: `No found ${req.params.iduser}`,
-                });
+                }); 
             } else {
                 res.status(500).send({
                     message: "Error" + req.params.iduser

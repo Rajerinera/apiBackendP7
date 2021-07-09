@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 
-const verifyPassword = require("../middleware/pass");
+//const verifyPassword = require("../middleware/pass");
 const verifyEmail = require("../middleware/email");
 const rateLimit = require("express-rate-limit");
 
@@ -14,7 +14,7 @@ const limiter = rateLimit({
 
 const log = require("../controllers/login");
 
-router.post("/signup", verifyPassword, verifyEmail, log.signup);
-router.post("/login", limiter, log.login);
-
+router.post("/signup", verifyEmail, log.signup);
+router.post("/login", limiter, log.login); 
+ 
 module.exports = router;

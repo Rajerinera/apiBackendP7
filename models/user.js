@@ -9,7 +9,7 @@ const userSchema = function(user){
 };
 
 userSchema.findById = (userId, result) => {
-    connection.query(`SELECT * FROM User WHERE id = ${userId}`, (err, res) => {
+    connection.query(`SELECT * FROM user WHERE id = ${userId}`, (err, res) => {
         if(err){
             console.log("error", err);
             result(err, null);
@@ -39,7 +39,7 @@ userSchema.getAll = (result) => {
 
 userSchema.updateById = (id, user, result) =>{
     connection.query(
-        `UPDATE User SET nom = ?, prenom = ?, image_url = ?`,
+        `UPDATE user SET name = ?, firstname = ?,`,
         [
             user.name,
             user.firstname,
@@ -63,7 +63,7 @@ userSchema.updateById = (id, user, result) =>{
 };
 
 userSchema.remove = (id, result) => {
-    connection.query("DELETE FROM User WHERE id = ?", id, (err, res)=>{
+    connection.query("DELETE FROM user WHERE id = ?", id, (err, res)=>{
         if (err) {
             console.log("error", err);
             result(null, err);
